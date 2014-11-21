@@ -26,7 +26,7 @@ $wgMSWE_add = array( 'date', 'gallery', 'strike', 'email', 'mslink', 'template' 
 
 To remove a button, include its name in the $wgMSWE_remove array, below the require_once line. For example:
 
-$wgMSWE_remove = array( 'help', 'characters', 'reference', 'advanced' );
+$wgMSWE_remove = array( 'advanced', 'characters', 'help' );
 
 By default, all arrays are empty.
 
