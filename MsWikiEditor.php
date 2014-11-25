@@ -1,6 +1,6 @@
 <?php
 
-$wgExtensionCredits['interface'][] = array(
+$wgExtensionCredits['other'][] = array(
 	'name' => 'MsWikiEditor',
 	'url' => 'https://www.mediawiki.org/wiki/Extension:MsWikiEditor',
 	'version' => '2.0',
