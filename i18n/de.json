@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Luis Felipe Schenone"
+			"Luis Felipe Schenone",
+			"Metalhead64"
 		]
 	},
-	"mswe-desc": "Die Wiki-Editor Toolbar kann hiermit leicht angepasst werden"
+	"mswe-desc": "Ermöglicht das einfache Hinzufügen oder Entfernen von Schaltflächen im WikiEditor"
 }
