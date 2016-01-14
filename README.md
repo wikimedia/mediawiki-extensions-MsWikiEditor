@@ -19,6 +19,7 @@ $wgMSWE_buttons['strike'] = array( 'Strike', '<strike>', 'Text', '</strike>', $w
 $wgMSWE_buttons['email'] = array( 'Email', '[mailto:', 'address@domain.com', ']', $wgScriptPath . '/extensions/MsWikiEditor/images/Wiki-Editor-Buttons_E-Mail_22.png' );
 $wgMSWE_buttons['mslink'] = array( 'MsLink', '{{#l:', 'Filename.ext', '}}', $wgScriptPath . '/extensions/MsWikiEditor/images/Wiki-Editor-Buttons_Li.png' );
 $wgMSWE_buttons['template'] = array( 'Your template', '{{Your template|', 'Parameters', '}}', $wgScriptPath . '/extensions/MsWikiEditor/images/Wiki-Editor-Buttons_Achtung_22.png' );
+$wgMSWE_buttons['signature'] = array( 'Signature', '--~~~~', '', '', $wgScriptPath . '/extensions/MsWikiEditor/images/Wiki-Editor-Buttons_Signature_22.png' );
 
 Then include its name in the $wgMSWE_add array, like so:
 
