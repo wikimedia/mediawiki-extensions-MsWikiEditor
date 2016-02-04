@@ -1,35 +1,32 @@
 MsWikiEditor
 ============
 
-MsWikiEditor is a MediaWiki extension that allows you to easily add or remove buttons from the WikiEditor.
+MsWikiEditor is a MediaWiki extension that allows you to easily add or remove buttons from the WikiEditor toolbar.
 
 Installation
 ------------
-To install MsWikiEditor, add the following to your LocalSettings.php:
+To install MsWikiEditor, simply add the following to your LocalSettings.php:
 
-require_once "$IP/extensions/MsWikiEditor/MsWikiEditor.php";
+wfLoadExtension( 'MsWikiEditor' );
 
-Configuration
--------------
-To add a button, first define it in the $wgMSWE_buttons array in your LocalSettings.php. Here are a few examples:
+Usage
+-----
+To add a button, add its definition to the $wgMSWE_add array in your LocalSettings.php. Here are a few examples:
 
-$wgMSWE_buttons['date'] = array( 'Current date', date( 'Y-m-d' ), '', '', $wgScriptPath . '/extensions/MsWikiEditor/images/Wiki-Editor-Buttons_Kalender_22.png' );
-$wgMSWE_buttons['gallery'] = array( 'Gallery', '<gallery>\\n', 'File:Example1.jpg|Caption1\\nFile:Example2.png|Caption2\\n', '</gallery>', $wgScriptPath . '/extensions/MsWikiEditor/images/Wiki-Editor-Buttons_Gallery_22.png' );
-$wgMSWE_buttons['strike'] = array( 'Strike', '<strike>', 'Text', '</strike>', $wgScriptPath . '/extensions/MsWikiEditor/images/Wiki-Editor-Buttons_Strike_22.png' );
-$wgMSWE_buttons['email'] = array( 'Email', '[mailto:', 'address@domain.com', ']', $wgScriptPath . '/extensions/MsWikiEditor/images/Wiki-Editor-Buttons_E-Mail_22.png' );
-$wgMSWE_buttons['mslink'] = array( 'MsLink', '{{#l:', 'Filename.ext', '}}', $wgScriptPath . '/extensions/MsWikiEditor/images/Wiki-Editor-Buttons_Li.png' );
-$wgMSWE_buttons['template'] = array( 'Your template', '{{Your template|', 'Parameters', '}}', $wgScriptPath . '/extensions/MsWikiEditor/images/Wiki-Editor-Buttons_Achtung_22.png' );
-$wgMSWE_buttons['signature'] = array( 'Signature', '--~~~~', '', '', $wgScriptPath . '/extensions/MsWikiEditor/images/Wiki-Editor-Buttons_Signature_22.png' );
+$wgMSWE_add['date'] = array( 'Current date', date( 'Y-m-d' ), '', '', 'extensions/MsWikiEditor/images/date.png' );
+$wgMSWE_add['gallery'] = array( 'Gallery', '<gallery>\\n', 'File:Example1.jpg|Caption1\\nFile:Example2.png|Caption2\\n', '</gallery>', 'extensions/MsWikiEditor/images/gallery.png' );
+$wgMSWE_add['strike'] = array( 'Strike', '<strike>', 'Text', '</strike>', 'extensions/MsWikiEditor/images/strike.png' );
+$wgMSWE_add['email'] = array( 'Email', '[mailto:', 'address@domain.com', ']', 'extensions/MsWikiEditor/images/email.png' );
+$wgMSWE_add['mslink'] = array( 'MsLink', '{{#l:', 'Filename.ext', '}}', 'extensions/MsWikiEditor/images/link.png' );
+$wgMSWE_add['template'] = array( 'Your template', '{{Your template|', 'Parameters', '}}', 'extensions/MsWikiEditor/images/template.png' );
+$wgMSWE_add['signature'] = array( 'Signature', '--~~~~', '', '', 'extensions/MsWikiEditor/images/signature.png' );
+$wgMSWE_add['attention'] = array( 'Attention', '{{Attention|', 'Text', '}}', 'extensions/MsWikiEditor/images/attention.png' );
 
-Then include its name in the $wgMSWE_add array, like so:
+To remove a button, just include its name (the 'rel' attribute) in the $wgMSWE_remove array. For example:
 
-$wgMSWE_add = array( 'date', 'gallery', 'strike', 'email', 'mslink', 'template' );
+$wgMSWE_remove = array( 'advanced', 'characters', 'help', 'file', 'reference', 'ilink', 'xlink' );
 
-To remove a button, include its name in the $wgMSWE_remove array, below the require_once line. For example:
-
-$wgMSWE_remove = array( 'advanced', 'characters', 'help' );
-
-By default, all arrays are empty.
+By default, both arrays are empty.
 
 Credits
 -------

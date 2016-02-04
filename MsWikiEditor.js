@@ -2,8 +2,8 @@
 if ( $.inArray( mw.config.get( 'wgAction' ), [ 'edit', 'submit' ] ) !== -1 ) {
 	mw.loader.using( 'user.options', function () {
 		if ( mw.user.options.get( 'usebetatoolbar' ) ) {
-			mw.loader.using( 'ext.wikiEditor.toolbar', function () {
-				$( document ).ready( mswe_modifyToolbar );
+			$( '#wpTextbox1' ).on( 'wikiEditor-toolbar-doneInitialSections', function () {
+				mw.loader.using( 'ext.wikiEditor.toolbar', mswe_modifyToolbar );
 			});
 		}
 	});
@@ -13,32 +13,20 @@ var mswe_setGroup = false;
 
 function mswe_modifyToolbar() {
 	mswe_addGroup();
-	mswe_addAllButtons( mswe_buttons );
-	jQuery.each( mswe_remove, function ( i, val ) {
-		if ( val === 'reference' ) {
-			$( '#wpTextbox1' ).wikiEditor( 'removeFromToolbar', {
-				'section': 'main',
-				'group': 'insert',
-				'tool': 'reference'
-			});
-		} else {
-			mswe_removeSection( val );
-		}
+	$.each( mswe_add, function ( key, value ) {
+		mswe_addButton( key );
+	});
+	$.each( mswe_remove, function ( key, value ) {
+		$( '#wikiEditor-ui-toolbar *[rel="' + value + '"]' ).remove();
 	});
 }
 
-function mswe_addAllButtons( mswe_buttons ) {
-	jQuery.each( mswe_add, function ( i, val ) {
-		mswe_addThisButton( val );
-	});
-}
-
-function mswe_addThisButton( titleButton ) {
-	var anam = mswe_buttons[ titleButton ][0];
-	var aprex = mswe_buttons[ titleButton ][1];
-	var aperix = mswe_buttons[ titleButton ][2];
-	var apostx = mswe_buttons[ titleButton ][3];
-	var aimg = mswe_buttons[ titleButton ][4];
+function mswe_addButton( key ) {
+	var label = mswe_add[ key ][0],
+		pre = mswe_add[ key ][1],
+		peri = mswe_add[ key ][2],
+		post = mswe_add[ key ][3],
+		icon = mswe_add[ key ][4];
 
 	// To add a button to an existing toolbar group:
 	$( '#wpTextbox1' ).wikiEditor( 'addToToolbar', {
@@ -46,25 +34,19 @@ function mswe_addThisButton( titleButton ) {
 		'group': 'additional',
 		'tools': {
 			'anam': {
-				'label': anam, // Or use labelMsg for a localized label, see above
+				'label': label, // Or use labelMsg for a localized label
 				'type': 'button',
-				'icon': aimg,
+				'icon': icon,
 				'action': {
 					'type': 'encapsulate',
 					'options': {
-						'pre': aprex, 
-						'peri': aperix,
-						'post': apostx,
+						'pre': pre, 
+						'peri': peri,
+						'post': post,
 					}
 				}
 			}
 		}
-	});
-}
-
-function mswe_removeSection( nam ) {
-	$( '#wpTextbox1' ).wikiEditor( 'removeFromToolbar', {
-		'section': nam
 	});
 }
 
@@ -79,5 +61,5 @@ function mswe_addGroup() {
 			}
 		});
 	}
-	$( '.wikiEditor-ui-toolbar .group-additional' ).css( 'border-left', '1px solid #DDDDDD' );
+	$( '.wikiEditor-ui-toolbar .group-additional' ).css( 'border-left', '1px solid #ddd' );
 }

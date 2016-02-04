@@ -1,0 +1,40 @@
+{
+	"name": "MsWikiEditor",
+	"version": "3.0",
+	"author": [
+		"[mailto:wiki@ratin.de Martin Schwindl]",
+		"[mailto:wiki@keyler-consult.de Martin Keyler]",
+		"[https://www.mediawiki.org/wiki/User:Luis_Felipe_Schenone Luis Felipe Schenone]"
+	],
+	"url": "https://www.mediawiki.org/wiki/Extension:MsWikiEditor",
+	"descriptionmsg": "mswe-desc",
+	"license-name": "GPL-2.0+",
+	"type": "other",
+	"MessagesDirs": {
+		"MsWikiEditor": [
+			"i18n"
+		]
+	},
+	"AutoloadClasses": {
+		"MsWikiEditor": "MsWikiEditor.body.php"
+	},
+	"ResourceModules": {
+		"ext.MsWikiEditor": {
+			"scripts": "MsWikiEditor.js"
+		}
+	},
+	"ResourceFileModulePaths": {
+		"localBasePath": "",
+		"remoteExtPath": "MsWikiEditor"
+	},
+	"Hooks": {
+		"EditPage::showEditForm:initial": [
+			"MsWikiEditor::start"
+		]
+	},
+	"config": {
+		"MSWE_add": [],
+		"MSWE_remove": []
+	},
+	"manifest_version": 1
+}

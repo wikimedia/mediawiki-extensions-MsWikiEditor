@@ -11,7 +11,6 @@ class MsWikiEditor {
 		$wgOut->addScript( "<script>
 			var mswe_add = JSON.parse('$mswe_add');
 			var mswe_remove = JSON.parse('$mswe_remove');
-			var mswe_buttons = JSON.parse('$mswe_buttons'); 
 			</script>"
 		);
 		$wgOut->addModules( 'ext.MsWikiEditor' );
