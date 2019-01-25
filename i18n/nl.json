@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Esketti"
+			"Esketti",
+			"Mainframe98"
 		]
 	},
-	"mswe-desc": "Gemakkelijk toevoegen of verwijderen met de knoppen de WikiEditor"
+	"mswe-desc": "Eenvoudig knoppen aan WikiEditor toevoegen of verwijderen"
 }
