@@ -1,10 +1,10 @@
 {
 	"name": "MsWikiEditor",
-	"version": "3.1",
+	"version": "3.2",
 	"author": [
 		"[mailto:wiki@ratin.de Martin Schwindl]",
 		"[mailto:wiki@keyler-consult.de Martin Keyler]",
-		"[https://www.mediawiki.org/wiki/User:Sophivorus Felipe Schenone]"
+		"[https://www.mediawiki.org/wiki/User:Sophivorus Sophivorus]"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:MsWikiEditor",
 	"descriptionmsg": "mswe-desc",
@@ -16,7 +16,7 @@
 		]
 	},
 	"AutoloadClasses": {
-		"MsWikiEditor": "MsWikiEditor.body.php"
+		"MsWikiEditor": "MsWikiEditor.php"
 	},
 	"ResourceModules": {
 		"ext.MsWikiEditor": {
@@ -29,7 +29,7 @@
 	},
 	"Hooks": {
 		"EditPage::showEditForm:initial": [
-			"MsWikiEditor::start"
+			"MsWikiEditor::init"
 		]
 	},
 	"config": {

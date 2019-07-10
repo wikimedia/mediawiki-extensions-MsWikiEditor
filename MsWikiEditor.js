@@ -1,18 +1,17 @@
+/* global $, mw, mswe_add, mswe_remove */
+
 // Check if we are in edit mode and the required modules are available and then customize the toolbar
 if ( $.inArray( mw.config.get( 'wgAction' ), [ 'edit', 'submit' ] ) !== -1 ) {
 	mw.loader.using( 'user.options', function () {
 		if ( mw.user.options.get( 'usebetatoolbar' ) ) {
-			$( '#wpTextbox1' ).on( 'wikiEditor-toolbar-doneInitialSections', function () {
-				mw.loader.using( 'ext.wikiEditor.toolbar', mswe_modifyToolbar );
-			});
+			$.when(
+				mw.loader.using( 'ext.wikiEditor' ), $.ready
+			).then( mswe_modifyToolbar );
 		}
 	});
 }
 
-var mswe_setGroup = false;
-
 function mswe_modifyToolbar() {
-	mswe_addGroup();
 	$.each( mswe_add, function ( key, value ) {
 		mswe_addButton( key );
 	});
@@ -26,12 +25,14 @@ function mswe_addButton( key ) {
 		pre = mswe_add[ key ][1],
 		peri = mswe_add[ key ][2],
 		post = mswe_add[ key ][3],
-		icon = mswe_add[ key ][4];
+		icon = mswe_add[ key ][4],
+		section = mswe_add[ key ][5] || 'main',
+		group = mswe_add[ key ][6] || 'insert';
 
-	// To add a button to an existing toolbar group:
+	// Add the button to the insert group
 	$( '#wpTextbox1' ).wikiEditor( 'addToToolbar', {
-		'section': 'main',
-		'group': 'additional',
+		'section': section,
+		'group': group,
 		'tools': {
 			'anam': {
 				'label': label, // Or use labelMsg for a localized label
@@ -48,18 +49,4 @@ function mswe_addButton( key ) {
 			}
 		}
 	});
-}
-
-function mswe_addGroup() {
-	if ( mswe_setGroup === false ) {
-		// To add a group to an existing toolbar section:
-		mswe_setGroup = true;
-		$( '#wpTextbox1' ).wikiEditor( 'addToToolbar', {
-			'section': 'main',
-			'groups': {
-				'additional': {}
-			}
-		});
-	}
-	$( '.wikiEditor-ui-toolbar .group-additional' ).css( 'border-left', '1px solid #ddd' );
 }
