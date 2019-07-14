@@ -9,7 +9,7 @@
 			"parallel-lint . --exclude vendor --exclude node_modules",
 			"minus-x check ."
 		],
-		"fix":  [
+		"fix": [
 			"minus-x fix ."
 		]
 	}
