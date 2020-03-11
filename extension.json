@@ -28,9 +28,7 @@
 		"remoteExtPath": "MsWikiEditor"
 	},
 	"Hooks": {
-		"EditPage::showEditForm:initial": [
-			"MsWikiEditor::init"
-		]
+		"EditPage::showEditForm:initial": "MsWikiEditor::init"
 	},
 	"config": {
 		"MSWE_add": [],
