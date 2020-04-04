@@ -2,7 +2,7 @@
 
 class MsWikiEditor {
 
-	static function init() {
+	public static function init() {
 		global $wgOut, $wgMSWE_add, $wgMSWE_remove;
 
 		$mswe_add = json_encode( $wgMSWE_add );
