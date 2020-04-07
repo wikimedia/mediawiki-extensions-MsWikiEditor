@@ -1,8 +1,8 @@
 {
 	"@metadata": {
 		"authors": [
-			"Sophivorus",
-			"Metalhead64"
+			"Metalhead64",
+			"Sophivorus"
 		]
 	},
 	"mswe-desc": "Ermöglicht das einfache Hinzufügen oder Entfernen von Schaltflächen im WikiEditor"
