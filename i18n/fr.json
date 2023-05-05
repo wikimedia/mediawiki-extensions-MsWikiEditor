@@ -1,8 +1,9 @@
 {
 	"@metadata": {
 		"authors": [
-			"Gomoko"
+			"Gomoko",
+			"Verdy p"
 		]
 	},
-	"mswe-desc": "Ajouter ou supprimer facilement des boutons à WikiEditor"
+	"mswe-desc": "Ajouter ou supprimer facilement des boutons à l’éditeur wiki"
 }
