@@ -1,10 +1,11 @@
 {
+	"manifest_version": 2,
 	"name": "MsWikiEditor",
-	"version": "3.2",
+	"version": "4.0",
 	"author": [
 		"[mailto:wiki@ratin.de Martin Schwindl]",
 		"[mailto:wiki@keyler-consult.de Martin Keyler]",
-		"[https://www.mediawiki.org/wiki/User:Sophivorus Sophivorus]"
+		"[https://www.mediawiki.org/wiki/User:Sophivorus Felipe Schenone]"
 	],
 	"url": "https://www.mediawiki.org/wiki/Extension:MsWikiEditor",
 	"descriptionmsg": "mswe-desc",
@@ -31,11 +32,15 @@
 		"remoteExtPath": "MsWikiEditor"
 	},
 	"Hooks": {
-		"EditPage::showEditForm:initial": "MsWikiEditor::init"
+		"ResourceLoaderGetConfigVars": "MsWikiEditor::onResourceLoaderGetConfigVars",
+		"EditPage::showEditForm:initial": "MsWikiEditor::onShowEditFormInitial"
 	},
 	"config": {
-		"MSWE_add": [],
-		"MSWE_remove": []
-	},
-	"manifest_version": 1
+		"MSWE_add": {
+			"value": []
+		},
+		"MSWE_remove": {
+			"value": []
+		}
+	}
 }

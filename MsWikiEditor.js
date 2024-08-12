@@ -1,52 +1,51 @@
-/* global $, mw, mswe_add, mswe_remove */
+const MsWikiEditor = {
 
-// Check if we are in edit mode and the required modules are available and then customize the toolbar
-if ( $.inArray( mw.config.get( 'wgAction' ), [ 'edit', 'submit' ] ) !== -1 ) {
-	mw.loader.using( 'user.options', function () {
-		if ( mw.user.options.get( 'usebetatoolbar' ) ) {
-			$.when(
-				mw.loader.using( 'ext.wikiEditor' ), $.ready
-			).then( mswe_modifyToolbar );
-		}
-	});
-}
+	init: function () {
+		mw.hook( 'wikiEditor.toolbarReady' ).add( MsWikiEditor.addButtons );
+		mw.hook( 'wikiEditor.toolbarReady' ).add( MsWikiEditor.removeButtons );
+	},
 
-function mswe_modifyToolbar() {
-	$.each( mswe_add, function ( key, value ) {
-		mswe_addButton( key );
-	});
-	$.each( mswe_remove, function ( key, value ) {
-		$( '#wikiEditor-ui-toolbar *[rel="' + value + '"]' ).remove();
-	});
-}
-
-function mswe_addButton( key ) {
-	var label = mswe_add[ key ][0],
-		pre = mswe_add[ key ][1],
-		peri = mswe_add[ key ][2],
-		post = mswe_add[ key ][3],
-		icon = mswe_add[ key ][4],
-		section = mswe_add[ key ][5] || 'main',
-		group = mswe_add[ key ][6] || 'insert';
-
-	// Add the button to the insert group
-	$( '#wpTextbox1' ).wikiEditor( 'addToToolbar', {
-		'section': section,
-		'group': group,
-		'tools': {
-			'anam': {
-				'label': label, // Or use labelMsg for a localized label
-				'type': 'button',
-				'icon': icon,
-				'action': {
-					'type': 'encapsulate',
-					'options': {
-						'pre': pre, 
-						'peri': peri,
-						'post': post,
+	addButtons: function ( $textarea ) {
+		const buttons = mw.config.get( 'wgMsWikiEditorAdd' );
+		for ( const key in buttons ) {
+			const button = buttons[ key ];
+			const label = button[0];
+			const pre = button[1];
+			const peri = button[2];
+			const post = button[3];
+			const icon = button[4];
+			const section = button[5] || 'main';
+			const group = button[6] || 'insert';
+			$textarea.wikiEditor( 'addToToolbar', {
+				section: section,
+				group: group,
+				tools: {
+					anam: {
+						label: label,
+						type: 'button',
+						icon: icon,
+						action: {
+							type: 'encapsulate',
+							options: {
+								pre: pre, 
+								peri: peri,
+								post: post,
+							}
+						}
 					}
 				}
-			}
+			} );
 		}
-	});
-}
+	},
+
+	removeButtons: function ( $textarea ) {
+		const buttons = mw.config.get( 'wgMsWikiEditorRemove' );
+		const $wikiEditor = $textarea.closest( '.wikiEditor-ui' );
+		const $toolbar = $wikiEditor.find( '#wikiEditor-ui-toolbar' );
+		for ( const key of buttons ) {
+			$toolbar.find( '[rel="' + key + '"]' ).remove();
+		}
+	}
+};
+
+$( MsWikiEditor.init );

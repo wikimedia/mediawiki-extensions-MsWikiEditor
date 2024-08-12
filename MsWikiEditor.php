@@ -2,16 +2,14 @@
 
 class MsWikiEditor {
 
-	public static function init() {
-		global $wgOut, $wgMSWE_add, $wgMSWE_remove;
+	public static function onResourceLoaderGetConfigVars( array &$vars, string $skin, Config $config ) {
+		$add = $config->get( 'MSWE_add' );
+		$remove = $config->get( 'MSWE_remove' );
+		$vars['wgMsWikiEditorAdd'] = $add;
+		$vars['wgMsWikiEditorRemove'] = $remove;
+	}
 
-		$mswe_add = json_encode( $wgMSWE_add );
-		$mswe_remove = json_encode( $wgMSWE_remove );
-		$wgOut->addScript( "<script>
-			var mswe_add = JSON.parse('$mswe_add');
-			var mswe_remove = JSON.parse('$mswe_remove');
-			</script>"
-		);
-		$wgOut->addModules( 'ext.MsWikiEditor' );
+	public static function onShowEditFormInitial( EditPage $editPage, OutputPage $output ) {
+		$output->addModules( 'ext.MsWikiEditor' );
 	}
 }
