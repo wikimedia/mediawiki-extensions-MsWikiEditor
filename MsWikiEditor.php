@@ -1,5 +1,7 @@
 <?php
 
+use MediaWiki\EditPage\EditPage;
+
 class MsWikiEditor {
 
 	public static function onResourceLoaderGetConfigVars( array &$vars, string $skin, Config $config ) {
